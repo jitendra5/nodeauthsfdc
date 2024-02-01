@@ -14,8 +14,12 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 app.get('/oauth2/auth', function(req, res) {
-    console.log('uuu:::',oauth2.getAuthorizationUrl({ scope : 'full' }))
-    res.redirect(oauth2.getAuthorizationUrl({ scope : 'full' , prompt :'login'}));
+    console.log('url: ' + req.query.domain);
+    let urlStr =oauth2.getAuthorizationUrl({ scope : 'full', prompt :'login' });
+    console.log('urlStr:::',urlStr)
+    let finalUrlStr = req.query.domain+'/services'+urlStr.split('/services')[1];
+    console.log('uuu:::',finalUrlStr)
+    res.redirect(finalUrlStr);
 });
 
 app.listen(port, () => {
