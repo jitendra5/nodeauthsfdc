@@ -20,8 +20,9 @@ app.get('/oauth2/auth', function(req, res) {
     console.log('domain: ' + req.query.domain);
     console.log('clientId: ' + req.query.clientId);
     console.log('redirecturl: ' + req.query.redirecturl);
+    console.log('state: ' + req.query.state);
     //let urlStr =oauth2.getAuthorizationUrl({ scope : 'full', prompt :'login'});
-     let urlStr =oauth2.getAuthorizationUrl({ scope : 'full', prompt :'login','client_id' : req.query.clientId,'redirect_uri': req.query.redirecturl});
+     let urlStr =oauth2.getAuthorizationUrl({ scope : 'full', prompt :'login','client_id' : req.query.clientId,'redirect_uri': req.query.redirecturl, 'state': state});
      console.log('urlStr:::',urlStr)
     let finalUrlStr = req.query.domain+'/services'+urlStr.split('/services')[1];
     console.log('uuu:::',finalUrlStr)
